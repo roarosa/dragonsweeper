@@ -14,10 +14,10 @@ const GUESS_LABELS = {
   CellData.GuessValue.EIGHT: "8",
   CellData.GuessValue.NINE: "9",
   CellData.GuessValue.TEN: "10",
-  CellData.GuessValue.ELEVEN: "11",
-  CellData.GuessValue.TWELVE: "12",
   CellData.GuessValue.BLUE: "?B",
   CellData.GuessValue.GREEN: "?G",
+  CellData.GuessValue.RED: "?R",
+  CellData.GuessValue.CHEST: "!!",
   CellData.GuessValue.MINE: "*",
   CellData.GuessValue.NONE: "",
 }

@@ -58,8 +58,8 @@ func show_loss(grid: GameState.GridState, killed_by: Vector2i) -> void:
           cell_node.set_mode_reward_scroll(reward.scroll, true)
         elif reward.type == CellData.Reward.Type.WIN:
           cell_node.set_mode_reward_crown(true)
-      elif cell_data.is_mind_flayer_hidden(grid):
-        cell_node.set_mode_mind_flayer_hidden()
+      elif cell_data.is_gazer_hidden(grid):
+        cell_node.set_mode_gazer_hidden()
       else:
         cell_node.set_mode_empty(cell_data.get_surrounding_value(grid))
     else:
@@ -125,12 +125,12 @@ func _get_monster_view(cell_data: CellData, grid: GameState.GridState) -> Cell.M
       _:
         print("monster_view_error: unexpected direction for lover: ", direction)
         return Cell.MonsterView.LOVER_LEFT
-  if cell_data is CellData.MonsterLich:
-    return Cell.MonsterView.LICH
+  if cell_data is CellData.MonsterEngineer:
+    return Cell.MonsterView.ENGINEER
   if cell_data is CellData.MonsterRatKing:
     return Cell.MonsterView.RAT_KING
-  if cell_data is CellData.MonsterMindFlayer:
-    return Cell.MonsterView.MIND_FLAYER
+  if cell_data is CellData.MonsterGazer:
+    return Cell.MonsterView.GAZER
   if cell_data is CellData.MonsterSlimeWitch:
     return Cell.MonsterView.SLIME_WITCH
   if cell_data is CellData.MonsterMimic:
@@ -144,7 +144,7 @@ func _get_monster_view(cell_data: CellData, grid: GameState.GridState) -> Cell.M
   if cell_data is CellData.DragonEgg:
     return Cell.MonsterView.DRAGON_EGG
   if cell_data is CellData.EmptyCell:
-    return Cell.MonsterView.GNOME
+    return Cell.MonsterView.FAIRY
   if cell_data is CellData.Wall:
     match cell_data.health:
       0:
@@ -182,8 +182,8 @@ func _set_cell_data(cell_node: Cell, cell_data: CellData, grid: GameState.GridSt
           cell_node.set_mode_reward_scroll(reward.scroll)
         elif reward.type == CellData.Reward.Type.WIN:
           cell_node.set_mode_reward_crown()
-      elif cell_data.is_mind_flayer_hidden(grid):
-        cell_node.set_mode_mind_flayer_hidden()
+      elif cell_data.is_gazer_hidden(grid):
+        cell_node.set_mode_gazer_hidden()
       else:
         cell_node.set_mode_empty(cell_data.get_surrounding_value(grid))
     _:

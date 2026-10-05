@@ -1,5 +1,5 @@
 class_name Cell
-extends PanelContainer
+extends Container
 
 @onready var number_node: Label = %Number
 @onready var symbol_node: TextureRect = %ExpIcon
@@ -37,13 +37,13 @@ enum MonsterView {
   LOVER_RIGHT,
   LOVER_LEFT_BROKEN,
   LOVER_RIGHT_BROKEN,
-  LICH,
+  ENGINEER,
   RAT_KING,
-  MIND_FLAYER,
+  GAZER,
   SLIME_WITCH,
   MIMIC,
   MINE,
-  GNOME,
+  FAIRY,
   DRAGON,
   DRAGON_EGG,
   CHEST,
@@ -54,53 +54,51 @@ enum MonsterView {
   FALLBACK,
 }
 
-# TODO: replace with assets
-const MONSTER_LABELS = {
-  MonsterView.RAT_LEFT: "<🐀",
-  MonsterView.RAT_RIGHT: "🐀>",
-  MonsterView.RAT_UP: "^🐀^",
-  MonsterView.BAT: "🦇",
-  MonsterView.SKELETON: "💀",
-  MonsterView.GARGOYLE_UP: "^🧟",
-  MonsterView.GARGOYLE_DOWN: "🧟v",
-  MonsterView.GARGOYLE_LEFT: "<🧟",
-  MonsterView.GARGOYLE_RIGHT: "🧟>",
-  MonsterView.SLIME: "💧",
-  MonsterView.MINOTAUR_LEFT: "<🐂",
-  MonsterView.MINOTAUR_RIGHT: "🐂>",
-  MonsterView.MINOTAUR_LEFT_OPEN: "<!🐂",
-  MonsterView.MINOTAUR_RIGHT_OPEN: "🐂!>",
-  MonsterView.GUARDIAN: "🛡️",
-  MonsterView.PURPLE_SLIME: "💧+",
-  MonsterView.LOVER_LEFT: "<💕",
-  MonsterView.LOVER_RIGHT: "💕>",
-  MonsterView.LOVER_LEFT_BROKEN: "<!💕",
-  MonsterView.LOVER_RIGHT_BROKEN: "💕!>",
-  MonsterView.LICH: "🧛🏻‍♀️",
-  MonsterView.RAT_KING: "🐀👑",
-  MonsterView.MIND_FLAYER: "👾",
-  MonsterView.SLIME_WITCH: "🧙",
-  MonsterView.MIMIC: "🎁",
-  MonsterView.MINE: "💥",
-  MonsterView.GNOME: "🧚",
-  MonsterView.DRAGON: "🐉",
-  MonsterView.DRAGON_EGG: "🥚",
-  MonsterView.CHEST: "🎁",
-  MonsterView.WALL_0: "🧱0",
-  MonsterView.WALL_1: "🧱1",
-  MonsterView.WALL_2: "🧱2",
-  MonsterView.WALL_3: "🧱3",
-  MonsterView.FALLBACK: "⍰",
+const MONSTER_TEXTURES = {
+  MonsterView.RAT_LEFT: ["rat_side", true],
+  MonsterView.RAT_RIGHT: ["rat_side", false],
+  MonsterView.RAT_UP: ["rat_up", false],
+  MonsterView.BAT: ["bat", false],
+  MonsterView.SKELETON: ["skeleton", false],
+  MonsterView.GARGOYLE_UP: ["gargoyle_up", false],
+  MonsterView.GARGOYLE_DOWN: ["gargoyle_down", false],
+  MonsterView.GARGOYLE_LEFT: ["gargoyle_side", true],
+  MonsterView.GARGOYLE_RIGHT: ["gargoyle_side", false],
+  MonsterView.SLIME: ["slime", false],
+  MonsterView.MINOTAUR_LEFT: ["minotaur", true],
+  MonsterView.MINOTAUR_RIGHT: ["minotaur", false],
+  MonsterView.MINOTAUR_LEFT_OPEN: ["minotaur_opened", false],
+  MonsterView.MINOTAUR_RIGHT_OPEN: ["minotaur_opened", true],
+  MonsterView.GUARDIAN: ["guardian", false],
+  MonsterView.PURPLE_SLIME: ["purple_slime", false],
+  MonsterView.LOVER_LEFT: ["lover_woman", false],
+  MonsterView.LOVER_RIGHT: ["lover_man", false],
+  MonsterView.LOVER_LEFT_BROKEN: ["lover_woman_heartbroken", false],
+  MonsterView.LOVER_RIGHT_BROKEN: ["lover_man_heartbroken", false],
+  MonsterView.ENGINEER: ["engineer", false],
+  MonsterView.RAT_KING: ["rat_king", false],
+  MonsterView.GAZER: ["gazer", false],
+  MonsterView.SLIME_WITCH: ["slime_witch", false],
+  MonsterView.MIMIC: ["chest", false],
+  MonsterView.MINE: ["mine", false],
+  MonsterView.FAIRY: ["fairy", false],
+  MonsterView.DRAGON: ["dragon", false],
+  MonsterView.DRAGON_EGG: ["dragon_egg", false],
+  MonsterView.CHEST: ["chest", false],
+  MonsterView.WALL_0: ["wall_0", false],
+  MonsterView.WALL_1: ["wall_1", false],
+  MonsterView.WALL_2: ["wall_2", false],
+  MonsterView.WALL_3: ["wall_3", false],
+  MonsterView.FALLBACK: ["", false],
 }
 
-# TODO replace with assets
-const SCROLL_REWARD_LABELS = {
-  CellData.Reward.ScrollType.HEALING: "(❤️)",
-  CellData.Reward.ScrollType.SCRYING: "(👀)",
-  CellData.Reward.ScrollType.SCRYING_INITIAL: "(👀)",
-  CellData.Reward.ScrollType.MINES: "(💥)",
-  CellData.Reward.ScrollType.RATS: "(🐁)",
-  CellData.Reward.ScrollType.SLIMES: "(💧)",
+const SCROLL_REWARD_TEXTURE_NAMES = {
+  CellData.Reward.ScrollType.HEALING: "reward_scroll_health",
+  CellData.Reward.ScrollType.SCRYING: "reward_scroll_orb",
+  CellData.Reward.ScrollType.SCRYING_INITIAL: "reward_orb",
+  CellData.Reward.ScrollType.MINES: "reward_scroll_mine",
+  CellData.Reward.ScrollType.RATS: "reward_scroll_rat",
+  CellData.Reward.ScrollType.SLIMES: "reward_scroll_slime",
 }
 
 var cell_disabled: bool = false
@@ -110,6 +108,7 @@ var _can_guess: bool
 func set_mode_hidden() -> void:
   _set_background_color(Color.WHITE)
   _display_name(false)
+  _display_icon(false)
   _display_number(false)
   _display_symbol(false)
   _can_guess = true
@@ -121,16 +120,23 @@ func set_mode_guess(guess_value: CellData.GuessValue) -> void:
     guess_color = Color.BLUE
   elif guess_value == CellData.GuessValue.GREEN:
     guess_color = Color.GREEN
+  elif guess_value == CellData.GuessValue.RED:
+    guess_color = Color.RED
+  elif guess_value == CellData.GuessValue.CHEST:
+    guess_color = Color.YELLOW
   elif guess_value == CellData.GuessValue.MINE:
     guess_color = Color.RED
   _display_name(true, GuessPopup.GUESS_LABELS[guess_value], guess_color)
+  _display_icon(false)
   _display_number(false)
   _display_symbol(false)
   _can_guess = true
 
-func set_mode_mind_flayer_hidden() -> void:
+func set_mode_gazer_hidden() -> void:
   _set_background_color(Color.DARK_GRAY)
   _display_name(false)
+  _display_icon(false)
+  # TODO: Way too hard to see
   _display_number(true, "?", Color.PURPLE)
   _display_symbol(false)
   _can_guess = false
@@ -138,34 +144,39 @@ func set_mode_mind_flayer_hidden() -> void:
 func set_mode_empty(surrounding_value: int) -> void:
   _set_background_color(Color.DARK_GRAY)
   _display_name(false)
+  _display_icon(false)
   _display_number(true, "" if surrounding_value == 0 else str(surrounding_value))
   _display_symbol(false)
   _can_guess = false
 
 func set_mode_revealed(monster_view: MonsterView, health: int, locked: bool = false) -> void:
   _set_background_color(Color.WHITE if not locked else Color.DARK_GRAY)
-  _display_name(true, MONSTER_LABELS[monster_view])
+  _display_name(false)
+  _display_icon(true, MONSTER_TEXTURES[monster_view][0], MONSTER_TEXTURES[monster_view][1])
   _display_number(true, str(health), Color.YELLOW)
   _display_symbol(false)
   _can_guess = false
 
 func set_mode_revealed_icon_only(monster_view: MonsterView, locked: bool = false) -> void:
   _set_background_color(Color.WHITE if not locked else Color.DARK_GRAY)
-  _display_name(true, MONSTER_LABELS[monster_view])
+  _display_name(false)
+  _display_icon(true, MONSTER_TEXTURES[monster_view][0], MONSTER_TEXTURES[monster_view][1])
   _display_number(false)
   _display_symbol(false)
   _can_guess = false
 
 func set_mode_reward_experience(monster_view: MonsterView, experience: int, locked: bool = false) -> void:
   _set_background_color(Color.YELLOW if not locked else Color.DARK_GRAY)
-  _display_name(true, MONSTER_LABELS[monster_view])
+  _display_name(false)
+  _display_icon(true, MONSTER_TEXTURES[monster_view][0], MONSTER_TEXTURES[monster_view][1])
   _display_number(true, str(experience))
   _display_symbol(true)
   _can_guess = false
 
 func set_mode_reward_scroll(scroll_type: CellData.Reward.ScrollType, locked: bool = false) -> void:
   _set_background_color(Color.WHITE if not locked else Color.DARK_GRAY)
-  _display_name(true, SCROLL_REWARD_LABELS[scroll_type], Color.CORNFLOWER_BLUE)
+  _display_name(false)
+  _display_icon(true, SCROLL_REWARD_TEXTURE_NAMES[scroll_type], false, 36)
   _display_number(false)
   _display_symbol(false)
   _can_guess = false
@@ -173,6 +184,7 @@ func set_mode_reward_scroll(scroll_type: CellData.Reward.ScrollType, locked: boo
 func set_mode_reward_crown(locked: bool = false) -> void:
   _set_background_color(Color.WHITE if not locked else Color.DARK_GRAY)
   _display_name(true, "(👑)", Color.GOLDENROD)
+  _display_icon(false)
   _display_number(false)
   _display_symbol(false)
   _can_guess = false
@@ -181,11 +193,17 @@ func set_mode_reward_crown(locked: bool = false) -> void:
 func _set_background_color(color: Color) -> void:
   background_node.modulate = color
 
-# TODO: replace with icon assets
 func _display_name(p_visible: bool, p_text: String = "", p_modulate: Color = Color.WHITE) -> void:
   name_node.visible = p_visible
   name_node.modulate = p_modulate
   name_node.text = p_text
+
+func _display_icon(p_visible: bool, p_tex_name: String = "", flip_h: bool = false, p_size: int = 26) -> void:
+  icon_node.visible = p_visible
+  if p_visible:
+    icon_node.texture = Sprites.get_sprite(p_tex_name)
+    icon_node.flip_h = flip_h
+    icon_node.custom_minimum_size = Vector2(p_size, p_size)
 
 func _display_number(p_visible: bool, p_text: String = "", p_modulate: Color = Color.WHITE) -> void:
   number_node.visible = p_visible

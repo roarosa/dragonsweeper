@@ -50,7 +50,7 @@ func _reveal_cell(cell: CellData) -> void:
   elif cell is CellData.Chest or cell is CellData.DragonEgg:
     cell.state = CellData.CellState.REVEALED
   else:
-    # Consider: make one emty cell reveal (gnome)
+    # Consider: make one emty cell reveal (fairy)
     _kill_cell(cell)
 
 
@@ -94,6 +94,7 @@ func _apply_reward(reward: CellData.Reward, location: Vector2i) -> Array[StateEv
         var cells_to_scry = game_state.grid.get_diamond_neighbors(location)
         return _apply_scry(cells_to_scry)
       CellData.Reward.ScrollType.MINES:
+        # TODO: Cells next to mines don't get updated after scroll
         var mines = game_state.grid.cells.filter(func(c: CellData): return c is CellData.MonsterMine)
         var events: Array[StateEvent] = []
         for mine in mines:
@@ -165,7 +166,7 @@ func _kill_cell(cell: CellData) -> Array[StateEvent]:
       cell.rewards.append(CellData.Reward.new(CellData.Reward.Type.EXPERIENCE, 9, CellData.Reward.ScrollType.NONE))
     return events
 
-  if cell is CellData.MonsterMindFlayer:
+  if cell is CellData.MonsterGazer:
     for neighbor in game_state.grid.get_diamond_neighbors(cell.location):
       events.append(StateEvent.CellUpdatedEvent.new(neighbor.location))
   if cell is CellData.MonsterRatKing:

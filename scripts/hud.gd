@@ -37,11 +37,11 @@ func _get_loss_message(cell_data: CellData, grid: GameState.GridState) -> String
       return "You were killed by a vengeful lover. Serves you right."
     else:
       return "You were killed by a lover. How romantic."
-  elif cell_data is CellData.MonsterLich:
+  elif cell_data is CellData.MonsterEngineer:
     return "You avoided his mines, but were killed by the mine king himself."
   elif cell_data is CellData.MonsterRatKing:
     return "You were killed by the rat king. Long live the king!"
-  elif cell_data is CellData.MonsterMindFlayer:
+  elif cell_data is CellData.MonsterGazer:
     return "You were lost to the mists of a Watcher."
   elif cell_data is CellData.MonsterSlimeWitch:
     return "You were killed by the slime witch."

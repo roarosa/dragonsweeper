@@ -19,11 +19,11 @@ enum GuessValue {
   EIGHT,
   NINE,
   TEN,
-  ELEVEN,
-  TWELVE,
   MINE,
+  CHEST,
   BLUE,
   GREEN,
+  RED,
   NONE,
 }
 
@@ -79,9 +79,9 @@ func get_surrounding_value(grid: GameState.GridState) -> int:
   return value
 
 
-func is_mind_flayer_hidden(grid: GameState.GridState) -> bool:
+func is_gazer_hidden(grid: GameState.GridState) -> bool:
   for cell_data in grid.get_diamond_neighbors(location):
-    if cell_data is not MonsterMindFlayer:
+    if cell_data is not MonsterGazer:
       continue
     if cell_data.state != CellState.DEAD:
       return true
@@ -202,7 +202,7 @@ class MonsterLover extends CellData:
     return grid.get_cell(lover_location).state == CellState.DEAD
 
 
-class MonsterLich extends CellData:
+class MonsterEngineer extends CellData:
   func _init(p_location: Vector2i) -> void:
     super(p_location, 10)
     rewards = [
@@ -220,7 +220,7 @@ class MonsterRatKing extends CellData:
     ]
 
 
-class MonsterMindFlayer extends CellData:
+class MonsterGazer extends CellData:
   func _init(p_location: Vector2i) -> void:
     super(p_location, 5)
 
