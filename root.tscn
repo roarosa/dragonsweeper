@@ -1,0 +1,573 @@
+[gd_scene format=3 uid="uid://dfysdktwylrcc"]
+
+[ext_resource type="PackedScene" uid="uid://bfskoh23hia43" path="res://cell.tscn" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://c5yg0lrepg3f4" path="res://scripts/grid.gd" id="1_pyidc"]
+[ext_resource type="Script" uid="uid://b6cyxck1gdvgf" path="res://scripts/root.gd" id="1_vvh5c"]
+[ext_resource type="Script" uid="uid://dv08x2mep63u5" path="res://scripts/hud.gd" id="4_28aoi"]
+[ext_resource type="PackedScene" uid="uid://dbyyfd1vh3jt" path="res://win_screen.tscn" id="4_vyht1"]
+[ext_resource type="PackedScene" uid="uid://by52fqaofwuny" path="res://win_screen_clear.tscn" id="5_bf3um"]
+[ext_resource type="Script" uid="uid://ddhtj8aw5wnks" path="res://scripts/click_blocker.gd" id="5_jnlp7"]
+[ext_resource type="Script" uid="uid://cy6nmkgmj1csh" path="res://scripts/guess_popup.gd" id="6_l8v81"]
+
+[sub_resource type="Gradient" id="Gradient_vho56"]
+colors = PackedColorArray(0.61960787, 0, 0, 1, 0.045386653, 0.23, 0.032199997, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pq8q7"]
+gradient = SubResource("Gradient_vho56")
+width = 50
+
+[sub_resource type="Gradient" id="Gradient_pyidc"]
+offsets = PackedFloat32Array(0, 0.26623377, 1)
+colors = PackedColorArray(0.7769417, 0.22137284, 0.65763885, 1, 0.4636495, 0.14433704, 0.5072822, 1, 0.17760012, 0.07399999, 0.37, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vvh5c"]
+gradient = SubResource("Gradient_pyidc")
+width = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyht1"]
+
+[node name="Root" type="Control" unique_id=1848578831]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vvh5c")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=53980328]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1260944, 0.2541435, 0.3133559, 1)
+
+[node name="UIRoot" type="VBoxContainer" parent="." unique_id=1366178031]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="UIRoot" unique_id=244063044]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="UIRoot/Control" unique_id=617520424]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 544.0
+color = Color(0.1882353, 0.21176471, 0.25882354, 1)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UIRoot/Control" unique_id=550047957]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 544.0
+ratio = 1.3
+
+[node name="Grid" type="GridContainer" parent="UIRoot/Control/AspectRatioContainer" unique_id=134711095]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 13
+script = ExtResource("1_pyidc")
+
+[node name="Cell" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=624926598 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell2" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1334437751 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell3" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=490763151 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell4" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2100411454 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell5" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=868207561 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell6" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1788904719 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell7" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1222719816 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell8" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=80812173 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell9" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1374020386 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell10" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1722345997 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell11" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1699482956 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell12" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1502429624 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell13" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1953463961 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell14" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=155830822 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell15" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=868521719 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell16" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1024732245 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell17" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=217679778 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell18" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=599415532 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell19" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=377912298 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell20" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=854659962 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell21" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1403648250 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell22" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=790504579 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell23" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=118493350 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell24" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=867099004 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell25" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=24407875 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell26" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2047772421 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell27" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2111731327 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell28" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=699494449 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell29" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=340495656 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell30" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1976353979 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell31" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1541093268 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell32" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1925280060 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell33" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=957826214 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell34" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1208833935 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell35" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1939629927 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell36" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=799550611 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell37" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1711416594 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell38" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1698626562 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell39" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=227774380 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell40" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=31777392 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell41" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=149349102 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell42" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1691564022 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell43" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=33885035 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell44" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1398292066 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell45" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2133046193 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell46" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=263767603 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell47" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1111984299 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell48" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1552155593 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell49" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1238370170 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell50" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1370005383 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell51" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1543948948 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell52" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1980061864 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell53" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=117286458 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell54" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=174348655 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell55" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=50351290 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell56" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=241789644 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell57" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1315112735 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell58" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=328674157 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell59" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1021840249 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell60" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=365216149 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell61" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=731582463 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell62" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1560317350 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell63" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1168316749 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell64" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=726055207 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell65" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1194487595 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell66" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1002553802 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell67" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1353916212 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell68" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1296252127 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell69" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=888889024 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell70" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1220567903 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell71" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1768632109 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell72" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=460193620 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell73" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=967304116 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell74" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1796468847 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell75" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1510886153 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell76" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1820560762 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell77" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=138122702 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell78" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1201795731 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell79" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1429080898 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell80" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1806759344 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell81" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=170294352 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell82" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1196233680 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell83" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1468463036 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell84" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=458826384 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell85" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=933325069 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell86" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=539425168 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell87" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2002986498 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell88" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1205115615 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell89" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=21944873 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell90" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1761989544 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell91" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=149972459 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell92" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=468615549 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell93" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1282057332 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell94" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1780048661 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell95" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1625954592 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell96" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1431845875 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell97" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1894540719 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell98" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=611430671 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell99" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=601308274 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell100" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=971849303 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell101" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1969572689 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell102" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=199038090 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell103" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1609001825 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell104" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=284695056 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell105" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=622241850 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell106" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=335634823 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell107" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1733796177 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell108" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1918266819 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell109" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1325810041 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell110" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1830827047 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell111" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1130768002 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell112" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=15851701 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell113" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=177039570 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell114" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=286392011 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell115" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1647718356 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell116" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=348231620 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell117" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=157558537 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell118" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2100562320 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell119" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=190272824 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell120" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=901267252 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell121" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2103546052 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell122" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2056939309 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell123" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2089903334 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell124" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1221703415 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell125" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=127519259 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell126" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=519631889 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell127" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=2127816294 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell128" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1370895826 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell129" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=156001968 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="Cell130" parent="UIRoot/Control/AspectRatioContainer/Grid" unique_id=1835937882 instance=ExtResource("1_pq8q7")]
+layout_mode = 2
+
+[node name="WinScreen" parent="UIRoot/Control" unique_id=1951752110 instance=ExtResource("4_vyht1")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WinScreenClear" parent="UIRoot/Control" unique_id=1374289824 instance=ExtResource("5_bf3um")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="HUD" type="MarginContainer" parent="UIRoot" unique_id=1367758481]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("4_28aoi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/HUD" unique_id=1477096658]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="UIRoot/HUD/HBoxContainer" unique_id=1661434450]
+layout_mode = 2
+text = "Jorgette"
+
+[node name="PlayerIcon" type="TextureButton" parent="UIRoot/HUD/HBoxContainer" unique_id=1249112220]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("GradientTexture1D_pq8q7")
+stretch_mode = 0
+
+[node name="StatusContainer" type="VBoxContainer" parent="UIRoot/HUD/HBoxContainer" unique_id=1515175555]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="HealthContainer" type="HBoxContainer" parent="UIRoot/HUD/HBoxContainer/StatusContainer" unique_id=2137389732]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ColorRect" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/HealthContainer" unique_id=2129733900]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+color = Color(0.7411765, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/HealthContainer" unique_id=2110550366]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+color = Color(0.7411765, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/HealthContainer" unique_id=495475177]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+color = Color(0.7411765, 0, 0, 1)
+
+[node name="ExperienceContainer" type="HBoxContainer" parent="UIRoot/HUD/HBoxContainer/StatusContainer" unique_id=1187485162]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ColorRect" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/ExperienceContainer" unique_id=425322916]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.89, 0.60965, 0.26700002, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/ExperienceContainer" unique_id=1729046099]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.89, 0.60965, 0.26700002, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="UIRoot/HUD/HBoxContainer/StatusContainer/ExperienceContainer" unique_id=1680098250]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.89, 0.60965, 0.26700002, 1)
+
+[node name="LossMessage" type="Label" parent="UIRoot/HUD/HBoxContainer/StatusContainer" unique_id=961253784]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Monsternomicon" type="TextureButton" parent="UIRoot/HUD/HBoxContainer" unique_id=618783401]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture1D_vvh5c")
+stretch_mode = 0
+
+[node name="ClickBlocker" type="Control" parent="." unique_id=15228792]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jnlp7")
+
+[node name="GuessPopup" type="PopupPanel" parent="." unique_id=422129511]
+unique_name_in_owner = true
+oversampling_override = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vyht1")
+script = ExtResource("6_l8v81")

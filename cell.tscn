@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bfskoh23hia43"]
+
+[ext_resource type="Script" uid="uid://bhgprp40lwwym" path="res://scripts/cell.gd" id="1_yh0nt"]
+[ext_resource type="Texture2D" uid="uid://cuotndwjrsa5k" path="res://sprites.png" id="2_gwrgs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yjhv"]
+atlas = ExtResource("2_gwrgs")
+region = Rect2(280, 280, 40, 40)
+
+[sub_resource type="Gradient" id="Gradient_2yjhv"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.5, 0.5, 0.5, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2yjhv"]
+gradient = SubResource("Gradient_2yjhv")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_yh0nt"]
+colors = PackedColorArray(0.64, 0.4384, 0.192, 1, 0.96, 0.70912, 0.01919998, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gwrgs"]
+gradient = SubResource("Gradient_yh0nt")
+width = 10
+height = 10
+fill_from = Vector2(0, 1)
+
+[node name="Cell" type="PanelContainer" unique_id=121723965]
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yh0nt")
+
+[node name="Background" type="PanelContainer" parent="." unique_id=1057984298]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Background" type="TextureRect" parent="Background" unique_id=2048443270]
+layout_mode = 2
+texture = SubResource("AtlasTexture_2yjhv")
+expand_mode = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Background" unique_id=540832281]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture2D_2yjhv")
+draw_center = false
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=925939891]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer" unique_id=1745429244]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=1489381282]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=28547139]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExpIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=68852812]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_gwrgs")
+stretch_mode = 2
+
+[node name="Number" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1004863941]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "10"

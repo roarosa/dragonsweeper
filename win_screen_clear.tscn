@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://by52fqaofwuny"]
+
+[node name="WinScreenClear" type="MarginContainer" unique_id=1374289824]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1726493630]
+layout_mode = 2
+color = Color(0.17, 0.09364167, 0.0867, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1302396198]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1001704748]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2093732103]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "You vanquished the dragon!"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1600778694]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_font_sizes/font_size = 32
+text = "And everything else along with it…"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer" unique_id=870654468]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Your battle is done and the people are safe. But as the silence of the battlefield falls around you, a question lies unspoken:
+
+Have I slain the tyrant or become one?"
+autowrap_mode = 3
