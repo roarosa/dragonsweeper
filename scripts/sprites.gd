@@ -84,10 +84,10 @@ const SPRITES := {
   "hero_dead": Rect2(10 * SPRITE_SIZE, 1 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
   "hero_victory": Rect2(11 * SPRITE_SIZE, 1 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
 
-  "exp_empty": Rect2(5 * SPRITE_SIZE, 4 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "exp_full": Rect2(5 * SPRITE_SIZE, 5 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "heart_empty": Rect2(6 * SPRITE_SIZE, 5 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "heart_full": Rect2(7 * SPRITE_SIZE, 5 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "exp_full": Rect2(5 * SPRITE_SIZE + 5, 4 * SPRITE_SIZE + 5, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
+  "exp_empty": Rect2(5 * SPRITE_SIZE + 5, 5 * SPRITE_SIZE + 5, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
+  "heart_full": Rect2(6 * SPRITE_SIZE + 5, 5 * SPRITE_SIZE + 6, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
+  "heart_empty": Rect2(7 * SPRITE_SIZE + 5, 5 * SPRITE_SIZE + 6, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
   "book": Rect2(9 * SPRITE_SIZE, 7 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
 }
 
