@@ -6,6 +6,10 @@
 atlas = ExtResource("1_gm1uf")
 region = Rect2(280, 240, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1uf"]
+atlas = ExtResource("1_gm1uf")
+region = Rect2(160, 280, 40, 40)
+
 [node name="GuessButton" type="PanelContainer" unique_id=121723965]
 custom_minimum_size = Vector2(40, 40)
 offset_right = 50.0
@@ -29,3 +33,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "1"
 horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="." unique_id=108479351]
+layout_mode = 2
+texture = SubResource("AtlasTexture_gm1uf")

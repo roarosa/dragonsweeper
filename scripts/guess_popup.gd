@@ -2,7 +2,7 @@ class_name GuessPopup
 extends PopupPanel
 
 const BUTTON_SCENE := preload("res://guess_button.tscn")
-# TODO: replace with assets
+
 const GUESS_LABELS = {
   CellData.GuessValue.ONE: "1",
   CellData.GuessValue.TWO: "2",
@@ -14,12 +14,14 @@ const GUESS_LABELS = {
   CellData.GuessValue.EIGHT: "8",
   CellData.GuessValue.NINE: "9",
   CellData.GuessValue.TEN: "10",
-  CellData.GuessValue.BLUE: "?B",
-  CellData.GuessValue.GREEN: "?G",
-  CellData.GuessValue.RED: "?R",
-  CellData.GuessValue.CHEST: "!!",
-  CellData.GuessValue.MINE: "*",
-  CellData.GuessValue.NONE: "",
+}
+const GUESS_ICONS = {
+  CellData.GuessValue.CHEST: "guess_chest",
+  CellData.GuessValue.GREEN: "guess_green",
+  CellData.GuessValue.BLUE: "guess_blue",
+  CellData.GuessValue.RED: "guess_red",
+  CellData.GuessValue.MINE: "guess_mine",
+  CellData.GuessValue.NONE: "guess_trash",
 }
 
 signal guess_selected(location: Vector2i, value: CellData.GuessValue)
@@ -38,7 +40,21 @@ func _ready() -> void:
 
 func _make_button(value: CellData.GuessValue) -> Node:
   var button: Control = BUTTON_SCENE.instantiate()
-  button.get_node("Label").text = GUESS_LABELS[value]
+  var label_node = button.get_node("Label")
+  var icon_node = button.get_node("Icon")
+  if value in GUESS_LABELS:
+    label_node.text = GUESS_LABELS[value]
+    label_node.visible = true
+    icon_node.visible = false
+  elif value in GUESS_ICONS:
+    icon_node.texture = Sprites.get_sprite(GUESS_ICONS[value])
+    icon_node.visible = true
+    label_node.visible = false
+  else:
+    print("Unknown guess value: ", value)
+    label_node.text = "?"
+    label_node.visible = true
+    icon_node.visible = false
   button.gui_input.connect(_on_button_gui_input.bind(value))
   return button
 

@@ -115,19 +115,20 @@ func set_mode_hidden() -> void:
 
 func set_mode_guess(guess_value: CellData.GuessValue) -> void:
   _set_background_color(Color.WHITE)
-  var guess_color = Color.YELLOW
-  if guess_value == CellData.GuessValue.BLUE:
-    guess_color = Color.BLUE
-  elif guess_value == CellData.GuessValue.GREEN:
-    guess_color = Color.GREEN
-  elif guess_value == CellData.GuessValue.RED:
-    guess_color = Color.RED
-  elif guess_value == CellData.GuessValue.CHEST:
-    guess_color = Color.YELLOW
-  elif guess_value == CellData.GuessValue.MINE:
-    guess_color = Color.RED
-  _display_label(true, GuessPopup.GUESS_LABELS[guess_value], guess_color)
-  _display_icon(false)
+
+  if guess_value == CellData.GuessValue.NONE:
+    _display_label(false)
+    _display_icon(false)
+  if guess_value in GuessPopup.GUESS_LABELS:
+    _display_label(true, GuessPopup.GUESS_LABELS[guess_value], Color.YELLOW)
+    _display_icon(false)
+  elif guess_value in GuessPopup.GUESS_ICONS:
+    _display_label(false)
+    _display_icon(true, GuessPopup.GUESS_ICONS[guess_value], false, 36)
+  else:
+    _display_label(false)
+    _display_icon(false)
+
   _display_number(false)
   _display_symbol(false)
   _can_guess = true
