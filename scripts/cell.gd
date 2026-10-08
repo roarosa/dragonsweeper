@@ -183,8 +183,8 @@ func set_mode_reward_scroll(scroll_type: CellData.Reward.ScrollType, locked: boo
 
 func set_mode_reward_crown(locked: bool = false) -> void:
   _set_background_color(Color.WHITE if not locked else Color.DARK_GRAY)
-  _display_name(true, "(👑)", Color.GOLDENROD)
-  _display_icon(false)
+  _display_name(false)
+  _display_icon(true, "reward_crown", false, 36)
   _display_number(false)
   _display_symbol(false)
   _can_guess = false
