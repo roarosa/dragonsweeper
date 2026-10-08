@@ -27,9 +27,11 @@ func _on_guess_selected(location: Vector2i, value: CellData.GuessValue) -> void:
 
 
 func _on_level_up_pressed() -> void:
-  state_manager.game_state.player.level_up()
-  %HUD.update_health(state_manager.game_state.player.current_health, state_manager.game_state.player.max_health())
-  %HUD.update_experience(state_manager.game_state.player.current_experience, state_manager.game_state.player.next_level_experience())
+  if state_manager.game_state.player.current_experience >= state_manager.game_state.player.next_level_experience():
+    state_manager.game_state.player.level_up()
+    %HUD.update_health(state_manager.game_state.player.current_health, state_manager.game_state.player.max_health())
+    %HUD.update_experience(state_manager.game_state.player.current_experience, state_manager.game_state.player.next_level_experience())
+    _update_hero_state()
 
 
 func _handle_events(events: Array[StateEvent]) -> void:
@@ -42,11 +44,14 @@ func _handle_events(events: Array[StateEvent]) -> void:
       )
     elif event is StateEvent.HealthUpdatedEvent:
       %HUD.update_health(state_manager.game_state.player.current_health, state_manager.game_state.player.max_health())
+      _update_hero_state()
     elif event is StateEvent.ExperienceUpdatedEvent:
       %HUD.update_experience(state_manager.game_state.player.current_experience, state_manager.game_state.player.next_level_experience())
+      _update_hero_state()
     elif event is StateEvent.GameLostEvent:
       %Grid.show_loss(state_manager.game_state.grid, state_manager.game_state.status.killed_by)
       %HUD.show_loss(state_manager.game_state.grid, state_manager.game_state.status.killed_by)
+      _update_hero_state()
     elif event is StateEvent.GameWonEvent:
       %Grid.disable_grid()
       %HUD.show_win()
@@ -54,3 +59,17 @@ func _handle_events(events: Array[StateEvent]) -> void:
         %WinScreenClear.visible = true
       else:
         %WinScreen.visible = true
+      _update_hero_state()
+
+func _update_hero_state() -> void:
+  if state_manager.game_state.status.result == GameState.GameStatusEnum.WIN:
+    %HUD.update_hero_state(HUD.HERO_STATE.VICTORY)
+  elif state_manager.game_state.status.result == GameState.GameStatusEnum.LOSE:
+    %HUD.update_hero_state(HUD.HERO_STATE.DEAD)
+  else:
+    if state_manager.game_state.player.current_experience >= state_manager.game_state.player.next_level_experience():
+      %HUD.update_hero_state(HUD.HERO_STATE.LEVEL_UP)
+    elif state_manager.game_state.player.current_health == 0:
+      %HUD.update_hero_state(HUD.HERO_STATE.INJURED)
+    else:
+      %HUD.update_hero_state(HUD.HERO_STATE.NORMAL)

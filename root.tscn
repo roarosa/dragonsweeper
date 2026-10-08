@@ -503,11 +503,11 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "Jorgette"
 
-[node name="PlayerIcon" type="TextureButton" parent="UIRoot/HUD/HBoxContainer" unique_id=1249112220]
+[node name="PlayerIcon" type="TextureRect" parent="UIRoot/HUD/HBoxContainer" unique_id=1735817308]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_huihk")
+texture = SubResource("AtlasTexture_huihk")
 stretch_mode = 4
 
 [node name="StatusContainer" type="VBoxContainer" parent="UIRoot/HUD/HBoxContainer" unique_id=1515175555]

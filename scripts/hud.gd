@@ -1,16 +1,20 @@
+class_name HUD
 extends Node
 
-const EXPERIENCE_COLOR_GOOD = Color("#e39b44")
-const EXPERIENCE_COLOR_BAD = Color("#000000")
-
 signal level_up_pressed
-var _can_level_up: bool = false
 var _hearts: Array[TextureRect] = []
 var _experience_slots: Array[TextureRect] = []
+var _hero_state: HERO_STATE = HERO_STATE.NORMAL
 
+enum HERO_STATE {
+  NORMAL,
+  INJURED,
+  LEVEL_UP,
+  DEAD,
+  VICTORY,
+}
 
 func _ready() -> void:
-  %PlayerIcon.pressed.connect(_button_pressed)
   _hearts.assign(%HealthContainer.find_children("*", "TextureRect"))
   _experience_slots.assign(%ExperienceContainer.find_children("*", "TextureRect"))
 
@@ -56,7 +60,6 @@ func _get_loss_message(cell_data: CellData, grid: GameState.GridState) -> String
 
 
 func show_loss(grid: GameState.GridState, killed_by: Vector2i) -> void:
-  %PlayerIcon.disabled = true
   %HealthContainer.visible = false
   %ExperienceContainer.visible = false
   %LossMessage.visible = true
@@ -64,7 +67,6 @@ func show_loss(grid: GameState.GridState, killed_by: Vector2i) -> void:
 
 
 func show_win() -> void:
-  %PlayerIcon.disabled = true
   %HealthContainer.visible = false
   %ExperienceContainer.visible = false
 
@@ -85,7 +87,6 @@ func update_health(health: int, max_health: int) -> void:
 
 
 func update_experience(experience: int, next_level: int) -> void:
-  _can_level_up = experience >= next_level
   for i in range(_experience_slots.size()):
     var slot: TextureRect = _experience_slots[i]
     if i >= next_level:
@@ -99,13 +100,24 @@ func update_experience(experience: int, next_level: int) -> void:
       slot.texture = Sprites.get_sprite("exp_empty")
 
 
-func _make_experience_slot():
-  var slot = ColorRect.new()
-  slot.custom_minimum_size = Vector2(20, 20)
-  return slot
+func update_hero_state(state: HERO_STATE) -> void:
+  _hero_state = state
+  match _hero_state:
+    HERO_STATE.LEVEL_UP:
+      %PlayerIcon.texture = Sprites.get_sprite("hero_level_up")
+    HERO_STATE.INJURED:
+      %PlayerIcon.texture = Sprites.get_sprite("hero_injured")
+    HERO_STATE.DEAD:
+      %PlayerIcon.texture = Sprites.get_sprite("hero_dead")
+    HERO_STATE.VICTORY:
+      %PlayerIcon.texture = Sprites.get_sprite("hero_victory")
+    _:
+      %PlayerIcon.texture = Sprites.get_sprite("hero")
 
-func _button_pressed() -> void:
-  if _can_level_up:
-    level_up_pressed.emit()
-  else:
-    print("No level up!")
+
+func _gui_input(event: InputEvent) -> void:
+  if event.is_action_pressed("left_click"):
+    if _hero_state == HERO_STATE.LEVEL_UP:
+      level_up_pressed.emit()
+    else:
+      print("No level up!")

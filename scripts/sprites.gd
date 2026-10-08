@@ -78,11 +78,11 @@ const SPRITES := {
   "guess_mine": Rect2(4 * SPRITE_SIZE, 7 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
   "guess_trash": Rect2(5 * SPRITE_SIZE, 7 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
 
-  "hero": Rect2(10 * SPRITE_SIZE, 50 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "hero_level_up": Rect2(10 * SPRITE_SIZE, 0 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "hero_injured": Rect2(11 * SPRITE_SIZE, 0 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "hero_dead": Rect2(10 * SPRITE_SIZE, 1 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
-  "hero_victory": Rect2(11 * SPRITE_SIZE, 1 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "hero": Rect2(8 * SPRITE_SIZE, 5 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "hero_level_up": Rect2(8 * SPRITE_SIZE, 6 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "hero_injured": Rect2(8 * SPRITE_SIZE, 7 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "hero_dead": Rect2(9 * SPRITE_SIZE, 5 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
+  "hero_victory": Rect2(9 * SPRITE_SIZE, 6 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE),
 
   "exp_full": Rect2(5 * SPRITE_SIZE + 5, 4 * SPRITE_SIZE + 5, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
   "exp_empty": Rect2(5 * SPRITE_SIZE + 5, 5 * SPRITE_SIZE + 5, SPRITE_SIZE - 9, SPRITE_SIZE - 9), # custom to remove padding
