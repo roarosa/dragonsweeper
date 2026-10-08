@@ -39,13 +39,14 @@ func disable_grid() -> void:
 
 
 func show_loss(grid: GameState.GridState, killed_by: Vector2i) -> void:
-  # TODO: revealed mimic doesn't show open on loss
   var killed_by_i = grid.convert_location_to_index(killed_by)
   for i in get_child_count():
     var cell_node: Control = get_child(i)
     var cell_data = grid.cells[i]
     if cell_data.state == CellData.CellState.HIDDEN or cell_data.state == CellData.CellState.REVEALED:
-      if cell_data is CellData.Wall or cell_data is CellData.Chest:
+      if cell_data is CellData.MonsterMimic:
+        cell_node.set_mode_revealed(Cell.MonsterView.MIMIC_REVEALED, cell_data.health, i != killed_by_i)
+      elif cell_data is CellData.Wall or cell_data is CellData.Chest:
         cell_node.set_mode_revealed_icon_only(_get_monster_view(cell_data, grid), i != killed_by_i)
       else:
         cell_node.set_mode_revealed(_get_monster_view(cell_data, grid), cell_data.health, i != killed_by_i)
