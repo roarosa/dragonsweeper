@@ -93,6 +93,37 @@ const MONSTER_TEXTURES = {
   MonsterView.WALL_3: ["wall_3", false],
   MonsterView.FALLBACK: ["", false],
 }
+const DEAD_MONSTER_TEXTURES = {
+  # MonsterView.RAT_LEFT: ["rat_side_dead", true],
+  # MonsterView.RAT_RIGHT: ["rat_side_dead", false],
+  # MonsterView.RAT_UP: ["rat_up_dead", false],
+  # MonsterView.BAT: ["bat_dead", false],
+  # MonsterView.SKELETON: ["skeleton_dead", false],
+  # MonsterView.GARGOYLE_UP: ["gargoyle_up_dead", false],
+  # MonsterView.GARGOYLE_DOWN: ["gargoyle_down_dead", false],
+  # MonsterView.GARGOYLE_LEFT: ["gargoyle_side_dead", true],
+  # MonsterView.GARGOYLE_RIGHT: ["gargoyle_side_dead", false],
+  # MonsterView.SLIME: ["slime_dead", false],
+  # MonsterView.MINOTAUR_LEFT: ["minotaur_dead", true],
+  # MonsterView.MINOTAUR_RIGHT: ["minotaur_dead", false],
+  # MonsterView.MINOTAUR_LEFT_OPEN: ["minotaur_opened_dead", false],
+  # MonsterView.MINOTAUR_RIGHT_OPEN: ["minotaur_opened_dead", true],
+  # MonsterView.GUARDIAN: ["guardian_dead", false],
+  # MonsterView.PURPLE_SLIME: ["purple_slime_dead", false],
+  # MonsterView.LOVER_LEFT: ["lover_woman_dead", false],
+  # MonsterView.LOVER_RIGHT: ["lover_man_dead", false],
+  # MonsterView.LOVER_LEFT_BROKEN: ["lover_woman_heartbroken_dead", false],
+  # MonsterView.LOVER_RIGHT_BROKEN: ["lover_man_heartbroken_dead", false],
+  # MonsterView.ENGINEER: ["engineer_dead", false],
+  # MonsterView.RAT_KING: ["rat_king_dead", false],
+  # MonsterView.GAZER: ["gazer_dead", false],
+  # MonsterView.SLIME_WITCH: ["slime_witch_dead", false],
+  MonsterView.MIMIC: ["mimic", false],
+  MonsterView.MINE: ["mine_dead", false],
+  MonsterView.FAIRY: ["fairy_caught", false],
+  MonsterView.DRAGON: ["dragon_dead", false],
+  MonsterView.DRAGON_EGG: ["dragon_egg_dead", false],
+}
 
 const SCROLL_REWARD_TEXTURE_NAMES = {
   CellData.Reward.ScrollType.HEALING: "reward_scroll_health",
@@ -170,7 +201,10 @@ func set_mode_revealed_icon_only(monster_view: MonsterView, locked: bool = false
 func set_mode_reward_experience(monster_view: MonsterView, experience: int, locked: bool = false) -> void:
   _set_background_color(Color.YELLOW if not locked else Color.DARK_GRAY)
   _display_label(false)
-  _display_icon(true, MONSTER_TEXTURES[monster_view][0], MONSTER_TEXTURES[monster_view][1])
+  if monster_view in DEAD_MONSTER_TEXTURES:
+    _display_icon(true, DEAD_MONSTER_TEXTURES[monster_view][0], DEAD_MONSTER_TEXTURES[monster_view][1])
+  else:
+    _display_icon(true, MONSTER_TEXTURES[monster_view][0], MONSTER_TEXTURES[monster_view][1])
   _display_number(true, str(experience))
   _display_symbol(true)
   _can_guess = false
