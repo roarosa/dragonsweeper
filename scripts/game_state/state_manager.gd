@@ -94,7 +94,6 @@ func _apply_reward(reward: CellData.Reward, location: Vector2i) -> Array[StateEv
         var cells_to_scry = game_state.grid.get_diamond_neighbors(location)
         return _apply_scry(cells_to_scry)
       CellData.Reward.ScrollType.MINES:
-        # TODO: Cells next to mines don't get updated after scroll
         var mines = game_state.grid.cells.filter(func(c: CellData): return c is CellData.MonsterMine)
         var events: Array[StateEvent] = []
         for mine in mines:
