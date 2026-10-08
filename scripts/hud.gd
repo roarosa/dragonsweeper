@@ -2,6 +2,7 @@ class_name HUD
 extends Node
 
 signal level_up_pressed
+signal restart_pressed
 var _hearts: Array[TextureRect] = []
 var _experience_slots: Array[TextureRect] = []
 var _hero_state: HERO_STATE = HERO_STATE.NORMAL
@@ -17,6 +18,8 @@ enum HERO_STATE {
 func _ready() -> void:
   _hearts.assign(%HealthContainer.find_children("*", "TextureRect"))
   _experience_slots.assign(%ExperienceContainer.find_children("*", "TextureRect"))
+  %PlayerIcon.gui_input.connect(_on_PlayerIcon_gui_input)
+  %GameOverBar.gui_input.connect(_on_GameOverBar_gui_input)
 
 
 func _get_loss_message(cell_data: CellData, grid: GameState.GridState) -> String:
@@ -60,15 +63,21 @@ func _get_loss_message(cell_data: CellData, grid: GameState.GridState) -> String
 
 
 func show_loss(grid: GameState.GridState, killed_by: Vector2i) -> void:
-  %HealthContainer.visible = false
-  %ExperienceContainer.visible = false
-  %LossMessage.visible = true
-  %LossMessage.text = _get_loss_message(grid.get_cell(killed_by), grid) + "\nTry again!"
+  %StatusContainer.visible = false
+  %GameOverBar.visible = true
+  %Message.text = _get_loss_message(grid.get_cell(killed_by), grid)
 
 
 func show_win() -> void:
-  %HealthContainer.visible = false
-  %ExperienceContainer.visible = false
+  %StatusContainer.visible = false
+  %GameOverBar.visible = true
+  %Message.text = "You won!"
+
+
+func reset() -> void:
+  %StatusContainer.visible = true
+  %GameOverBar.visible = false
+  _hero_state = HERO_STATE.NORMAL
 
 
 func update_health(health: int, max_health: int) -> void:
@@ -115,9 +124,17 @@ func update_hero_state(state: HERO_STATE) -> void:
       %PlayerIcon.texture = Sprites.get_sprite("hero")
 
 
-func _gui_input(event: InputEvent) -> void:
+func _on_PlayerIcon_gui_input(event: InputEvent) -> void:
   if event.is_action_pressed("left_click"):
     if _hero_state == HERO_STATE.LEVEL_UP:
       level_up_pressed.emit()
     else:
       print("No level up!")
+
+
+func _on_GameOverBar_gui_input(event: InputEvent) -> void:
+  if event.is_action_pressed("left_click"):
+    if _hero_state == HERO_STATE.VICTORY or _hero_state == HERO_STATE.DEAD:
+      restart_pressed.emit()
+    else:
+      print("No restart!")

@@ -510,7 +510,24 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_huihk")
 stretch_mode = 4
 
+[node name="GameOverBar" type="VBoxContainer" parent="UIRoot/HUD/HBoxContainer" unique_id=1939690983]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Message" type="Label" parent="UIRoot/HUD/HBoxContainer/GameOverBar" unique_id=961253784]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Game over message"
+
+[node name="RestartButton" type="Label" parent="UIRoot/HUD/HBoxContainer/GameOverBar" unique_id=192479675]
+layout_mode = 2
+text = "< Restart? >"
+
 [node name="StatusContainer" type="VBoxContainer" parent="UIRoot/HUD/HBoxContainer" unique_id=1515175555]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
@@ -812,11 +829,6 @@ custom_minimum_size = Vector2(18, 20)
 layout_mode = 2
 texture = SubResource("AtlasTexture_qw60f")
 expand_mode = 1
-
-[node name="LossMessage" type="Label" parent="UIRoot/HUD/HBoxContainer/StatusContainer" unique_id=961253784]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
 
 [node name="Monsternomicon" type="TextureButton" parent="UIRoot/HUD/HBoxContainer" unique_id=618783401]
 custom_minimum_size = Vector2(70, 0)
