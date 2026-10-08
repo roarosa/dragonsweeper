@@ -102,6 +102,8 @@ func _apply_reward(reward: CellData.Reward, location: Vector2i) -> Array[StateEv
           if mine.state == CellData.CellState.REVEALED:
             mine.state = CellData.CellState.DEAD
             events.append(StateEvent.CellUpdatedEvent.new(mine.location))
+          for neighbor in game_state.grid.get_immediate_neighbors(mine.location):
+            events.append(StateEvent.CellUpdatedEvent.new(neighbor.location))
         return events
       CellData.Reward.ScrollType.RATS:
         var rats = game_state.grid.cells.filter(func(c: CellData): return c is CellData.MonsterRat)

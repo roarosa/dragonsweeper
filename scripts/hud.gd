@@ -72,45 +72,31 @@ func show_win() -> void:
 func update_health(health: int, max_health: int) -> void:
   for i in range(_hearts.size()):
     var heart: TextureRect = _hearts[i]
-    if i < health:
+    if i >= max_health:
+      heart.visible = false
+    elif i < health:
       heart.visible = true
       heart.texture = Sprites.get_sprite("heart_full")
       heart.modulate = Color.WHITE
-    elif i < max_health:
+    else:
       heart.visible = true
       heart.texture = Sprites.get_sprite("heart_empty")
       heart.modulate = Color.DARK_GRAY
-    else:
-      heart.visible = false
 
 
 func update_experience(experience: int, next_level: int) -> void:
   _can_level_up = experience >= next_level
-  # var current_experience_nodes = %ExperienceContainer.get_child_count()
-  # if current_experience_nodes < next_level:
-  #   for i in next_level - current_experience_nodes:
-  #     %ExperienceContainer.add_child(_make_experience_slot())
-  # elif next_level < current_experience_nodes:
-  #   var to_remove = %ExperienceContainer.get_children().slice(next_level)
-  #   for child in to_remove:
-  #     %ExperienceContainer.remove_child(child)
-  #     child.queue_free()
-
-  # for i in range(next_level):
-  #   var slot = %ExperienceContainer.get_child(i)
-  #   slot.color = EXPERIENCE_COLOR_GOOD if i < experience else EXPERIENCE_COLOR_BAD
   for i in range(_experience_slots.size()):
     var slot: TextureRect = _experience_slots[i]
-    if i < experience:
+    if i >= next_level:
+      slot.visible = false
+    elif i < experience:
       slot.visible = true
       slot.texture = Sprites.get_sprite("exp_full")
       slot.modulate = Color.WHITE
-    elif i < next_level:
+    else:
       slot.visible = true
       slot.texture = Sprites.get_sprite("exp_empty")
-      slot.modulate = Color.DARK_GRAY
-    else:
-      slot.visible = false
 
 
 func _make_experience_slot():
