@@ -134,8 +134,11 @@ const SCROLL_REWARD_TEXTURE_NAMES = {
   CellData.Reward.ScrollType.SLIMES: "reward_scroll_slime",
 }
 
+const GUESS_MENU_CLICK_THRESHOLD: int = 300
+
 var cell_disabled: bool = false
 var _can_guess: bool
+var _press_started: int
 
 
 func set_mode_hidden() -> void:
@@ -252,10 +255,16 @@ func _display_symbol(p_visible: bool) -> void:
 
 func _gui_input(event: InputEvent) -> void:
   if event.is_action_pressed("left_click"):
-    if not cell_disabled:
-      clicked.emit()
+    _press_started = Time.get_ticks_msec()
     accept_event()
-  if event.is_action_pressed("right_click"):
+  elif event.is_action_released("left_click"):
+    if not cell_disabled:
+      if Time.get_ticks_msec() - _press_started < GUESS_MENU_CLICK_THRESHOLD:
+        clicked.emit()
+      elif _can_guess:
+        right_clicked.emit()
+    accept_event()
+  elif event.is_action_pressed("right_click"):
     if not cell_disabled and _can_guess:
       right_clicked.emit()
     accept_event()
