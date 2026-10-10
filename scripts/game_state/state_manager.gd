@@ -5,14 +5,14 @@ var game_state: GameState
 
 
 func generate_state():
-  var rng := RandomNumberGenerator.new()
-  game_state = GameState.new(_generate_cells(rng), rng.seed)
-  return game_state
-
-
-func _generate_cells(_rng: RandomNumberGenerator) -> Array[CellData]:
-  # TODO dynamically generate grid
-  return TestGrid.get_test_grid()
+  for i in range(10):
+    var rng := RandomNumberGenerator.new()
+    var grid_cells = GridGenerator.generate_grid(rng)
+    if grid_cells.size() > 0:
+      print("generated grid successfully with seed: ", rng.seed, " (attempt ", i, ")")
+      game_state = GameState.new(grid_cells, rng.seed)
+      return
+  print("generate_state_error: failed to generate grid")
 
 
 func handle_cell_click(location: Vector2i) -> Array[StateEvent]:
