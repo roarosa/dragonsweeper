@@ -488,6 +488,7 @@ layout_mode = 1
 
 [node name="BookScreen" parent="UIRoot/Control" unique_id=373006407 instance=ExtResource("6_tw3kd")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="HUD" type="MarginContainer" parent="UIRoot" unique_id=1367758481]

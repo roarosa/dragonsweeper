@@ -37,6 +37,61 @@ class GridState:
       if cell is CellData.EmptyCell:
         empty_count += 1
   
+  func get_monster_counts() -> Dictionary:
+    var monster_counts: Dictionary = {
+      "rat": 0,
+      "bat": 0,
+      "skeleton": 0,
+      "gargoyle": 0,
+      "slime": 0,
+      "minotaur": 0,
+      "guardian": 0,
+      "purple_slime": 0,
+      "lover": 0,
+      "engineer": 0,
+      "rat_king": 0,
+      "gazer": 0,
+      "slime_witch": 0,
+      "mimic": 0,
+      "dragon": 0,
+      "mine": 0,
+    }
+    for cell in cells:
+      if cell.state == CellData.CellState.HIDDEN or cell.state == CellData.CellState.REVEALED:
+        if cell is CellData.MonsterRat:
+          monster_counts["rat"] += 1
+        elif cell is CellData.MonsterBat:
+          monster_counts["bat"] += 1
+        elif cell is CellData.MonsterSkeleton:
+          monster_counts["skeleton"] += 1
+        elif cell is CellData.MonsterGargoyle:
+          monster_counts["gargoyle"] += 1
+        elif cell is CellData.MonsterSlime:
+          monster_counts["slime"] += 1
+        elif cell is CellData.MonsterMinotaur:
+          monster_counts["minotaur"] += 1
+        elif cell is CellData.MonsterGuardian:
+          monster_counts["guardian"] += 1
+        elif cell is CellData.MonsterPurpleSlime:
+          monster_counts["purple_slime"] += 1
+        elif cell is CellData.MonsterLover:
+          monster_counts["lover"] += 1
+        elif cell is CellData.MonsterEngineer:
+          monster_counts["engineer"] += 1
+        elif cell is CellData.MonsterRatKing:
+          monster_counts["rat_king"] += 1
+        elif cell is CellData.MonsterGazer:
+          monster_counts["gazer"] += 1
+        elif cell is CellData.MonsterSlimeWitch:
+          monster_counts["slime_witch"] += 1
+        elif cell is CellData.MonsterMimic:
+          monster_counts["mimic"] += 1
+        elif cell is CellData.MonsterDragon:
+          monster_counts["dragon"] += 1
+        elif cell is CellData.MonsterMine:
+          monster_counts["mine"] += 1
+    return monster_counts
+  
   func convert_index_to_location(cell_index: int) -> Vector2i:
     return Vector2i(cell_index / 13, cell_index % 13)
 

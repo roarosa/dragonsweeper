@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dip8c70hvbgtk"]
+
+[ext_resource type="Script" uid="uid://4qwr4jrvfaqd" path="res://scripts/book_entry.gd" id="1_6ifl0"]
+[ext_resource type="Texture2D" uid="uid://cuotndwjrsa5k" path="res://sprites.png" id="1_tryds"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqy23"]
+atlas = ExtResource("1_tryds")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l25n"]
+atlas = ExtResource("1_tryds")
+region = Rect2(240, 200, 40, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fib27"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.4011766, 0.1281, 0.61, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[node name="BookEntry" type="HBoxContainer" unique_id=500830269]
+theme_override_constants/separation = 6
+script = ExtResource("1_6ifl0")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1008073032]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_eqy23")
+stretch_mode = 4
+
+[node name="Name" type="Label" parent="." unique_id=1513958171]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Minotaur"
+
+[node name="Control" type="Control" parent="." unique_id=1007378805]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="HBoxContainer" parent="." unique_id=1259790733]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Health" type="Label" parent="PanelContainer" unique_id=148505221]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "10"
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer" unique_id=552613168]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_6l25n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="." unique_id=943515551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_fib27")
+text = "13"

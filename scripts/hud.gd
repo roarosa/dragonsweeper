@@ -142,7 +142,7 @@ func _on_GameOverBar_gui_input(event: InputEvent) -> void:
 
 
 func _on_monsternomicon_icon_pressed() -> void:
-  %BookScreen.visible = true
+  %BookScreen.visible = not %BookScreen.visible
 
 
 func _on_BookScreen_gui_input(event: InputEvent) -> void:

@@ -1,20 +1,187 @@
 [gd_scene format=3 uid="uid://co2calab8yup8"]
 
+[ext_resource type="Script" uid="uid://dqyv6q5c4wdv1" path="res://scripts/book.gd" id="1_eqy23"]
 [ext_resource type="Texture2D" uid="uid://bb21tboaiouvq" path="res://book.png" id="1_srd1m"]
+[ext_resource type="PackedScene" uid="uid://dip8c70hvbgtk" path="res://book_entry.tscn" id="2_eqy23"]
 
 [node name="BookScreen" type="MarginContainer" unique_id=373006407]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 17
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("1_eqy23")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=771645754]
 layout_mode = 2
 texture = ExtResource("1_srd1m")
-expand_mode = 3
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=543607791]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1726985538]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=606815586]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=603243746]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1113942309]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "~ Bestiary ~"
+horizontal_alignment = 1
+
+[node name="BookEntry" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=500830269 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "rat_side"
+monster_name = "Rat"
+health = 1
+count = 13
+
+[node name="BookEntry2" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1844027285 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "bat"
+monster_name = "Bat"
+health = 2
+count = 12
+
+[node name="BookEntry3" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1915313658 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "skeleton"
+monster_name = "Skeleton"
+health = 3
+count = 10
+
+[node name="BookEntry4" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=2142050296 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "gargoyle_down"
+monster_name = "Gargoyle"
+health = 4
+count = 8
+
+[node name="BookEntry5" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1069967928 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "slime"
+monster_name = "Slime"
+health = 5
+count = 8
+
+[node name="BookEntry6" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=175379653 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "minotaur"
+monster_name = "Minotaur"
+health = 6
+count = 5
+
+[node name="BookEntry7" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=786625152 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "guardian"
+monster_name = "Guardian"
+health = 7
+count = 4
+
+[node name="BookEntry8" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1535302869 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "purple_slime"
+monster_name = "Purple Slime"
+health = 8
+count = 5
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=382386405]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=376411077]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2" unique_id=1365440963]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=892303923]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="BookEntry" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=66659463 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "lover_woman"
+monster_name = "Lover"
+health = 9
+count = 2
+
+[node name="BookEntry2" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=44650147 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "engineer"
+monster_name = "Engineer"
+health = 10
+count = 1
+
+[node name="BookEntry3" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=943089846 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "rat_king"
+monster_name = "Rat King"
+health = 5
+count = 1
+
+[node name="BookEntry4" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1819121322 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "gazer"
+monster_name = "Gazer"
+health = 5
+count = -1
+
+[node name="BookEntry5" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=699373004 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "slime_witch"
+monster_name = "Slime Witch"
+health = 1
+count = 1
+
+[node name="BookEntry6" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1506386767 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "mimic"
+monster_name = "Mimic"
+health = 11
+count = 1
+
+[node name="BookEntry7" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1827004057 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "dragon"
+monster_name = "Dragon"
+health = 13
+count = 1
+
+[node name="BookEntry8" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=281333697 instance=ExtResource("2_eqy23")]
+layout_mode = 2
+icon_name = "mine"
+monster_name = "Mine"
+health = 100
+count = 9
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1112560312]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1616553020]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18538326, 0.18538326, 0.18538326, 1)
+theme_override_font_sizes/font_size = 14
+text = "< Close >"
+horizontal_alignment = 2

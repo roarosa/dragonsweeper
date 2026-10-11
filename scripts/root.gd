@@ -44,7 +44,7 @@ func _start_game() -> void:
   %HUD.update_health(player.current_health, player.max_health())
   %HUD.update_experience(player.current_experience, player.next_level_experience())
   _update_hero_state()
-
+  %BookScreen.update_monster_counts(state_manager.game_state.grid.get_monster_counts())
 
 func _handle_events(events: Array[StateEvent]) -> void:
   for event in events:
@@ -56,14 +56,11 @@ func _handle_events(events: Array[StateEvent]) -> void:
       )
     elif event is StateEvent.HealthUpdatedEvent:
       %HUD.update_health(state_manager.game_state.player.current_health, state_manager.game_state.player.max_health())
-      _update_hero_state()
     elif event is StateEvent.ExperienceUpdatedEvent:
       %HUD.update_experience(state_manager.game_state.player.current_experience, state_manager.game_state.player.next_level_experience())
-      _update_hero_state()
     elif event is StateEvent.GameLostEvent:
       %Grid.show_loss(state_manager.game_state.grid, state_manager.game_state.status.killed_by)
       %HUD.show_loss(state_manager.game_state.grid, state_manager.game_state.status.killed_by)
-      _update_hero_state()
     elif event is StateEvent.GameWonEvent:
       %Grid.disable_grid()
       %HUD.show_win()
@@ -71,7 +68,8 @@ func _handle_events(events: Array[StateEvent]) -> void:
         %WinScreenClear.visible = true
       else:
         %WinScreen.visible = true
-      _update_hero_state()
+  _update_hero_state()
+  %BookScreen.update_monster_counts(state_manager.game_state.grid.get_monster_counts())
 
 func _update_hero_state() -> void:
   if state_manager.game_state.status.result == GameState.GameStatusEnum.WIN:
