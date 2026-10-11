@@ -20,6 +20,7 @@ func _ready() -> void:
   _experience_slots.assign(%ExperienceContainer.find_children("*", "TextureRect"))
   %PlayerIcon.gui_input.connect(_on_PlayerIcon_gui_input)
   %GameOverBar.gui_input.connect(_on_GameOverBar_gui_input)
+  %BookScreen.gui_input.connect(_on_BookScreen_gui_input)
 
 
 func _get_loss_message(cell_data: CellData, grid: GameState.GridState) -> String:
@@ -138,3 +139,12 @@ func _on_GameOverBar_gui_input(event: InputEvent) -> void:
       restart_pressed.emit()
     else:
       print("No restart!")
+
+
+func _on_monsternomicon_icon_pressed() -> void:
+  %BookScreen.visible = true
+
+
+func _on_BookScreen_gui_input(event: InputEvent) -> void:
+  if event.is_action_pressed("left_click"):
+    %BookScreen.visible = false

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by52fqaofwuny" path="res://win_screen_clear.tscn" id="5_bf3um"]
 [ext_resource type="Script" uid="uid://ddhtj8aw5wnks" path="res://scripts/click_blocker.gd" id="5_jnlp7"]
 [ext_resource type="Script" uid="uid://cy6nmkgmj1csh" path="res://scripts/guess_popup.gd" id="6_l8v81"]
+[ext_resource type="PackedScene" uid="uid://co2calab8yup8" path="res://book_screen.tscn" id="6_tw3kd"]
 [ext_resource type="Texture2D" uid="uid://cuotndwjrsa5k" path="res://sprites.png" id="7_huihk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_huihk"]
@@ -485,6 +486,10 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="BookScreen" parent="UIRoot/Control" unique_id=373006407 instance=ExtResource("6_tw3kd")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [node name="HUD" type="MarginContainer" parent="UIRoot" unique_id=1367758481]
 unique_name_in_owner = true
 layout_mode = 2
@@ -851,3 +856,5 @@ unique_name_in_owner = true
 oversampling_override = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vyht1")
 script = ExtResource("6_l8v81")
+
+[connection signal="pressed" from="UIRoot/HUD/HBoxContainer/Monsternomicon" to="UIRoot/HUD" method="_on_monsternomicon_icon_pressed"]
